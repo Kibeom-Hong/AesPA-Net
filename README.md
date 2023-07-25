@@ -3,7 +3,7 @@
 ### Official Pytorch Implementation of 'AesPA-Net' (ICCV 2023)
 ![teaser](https://github.com/Kibeom-Hong/AesPA-Net/assets/77425614/8653065b-9554-4481-8673-caa797dab6e2)
 
-> ## AesPA-Net : Aesthetic Pattern-Aware Style Transfer Networks
+> ## AesPA-Net: Aesthetic Pattern-Aware Style Transfer Networks
 >
 >  Paper[CVF] : TBD
 >  
