@@ -596,13 +596,13 @@ class Baseline(object):
 
 
 	def test(self, args):
-		self.network.decoder.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'dec_model_'+str(args.test_iter)+'.pth'))['state_dict'])
-		self.network.transformer.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'transformer_model_'+str(args.test_iter)+'.pth'))['state_dict'])
+		self.network.decoder.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'dec_model_.pth'))['state_dict'])
+		self.network.transformer.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'transformer_model_.pth'))['state_dict'])
 		
 		content_set = Transfer_TestDataset(self.content_dir, (512, 512), self.cropsize, self.cencrop, type='art', is_test=True)
 		art_reference_set = Transfer_TestDataset(self.style_dir, (512, 512), self.cropsize, self.cencrop, type='art', is_test=True)
 
-		dir_path = os.path.join(args.test_result_dir, self.comment, 'stylized_results'+str(args.test_iter)+'_namhyuk')
+		dir_path = os.path.join(args.test_result_dir, self.comment, 'stylized_results')
 		os.makedirs(dir_path, exist_ok=True)
 		content_loader = torch.utils.data.DataLoader(content_set, batch_size=self.batch_size, shuffle=False, drop_last=True, num_workers=self.num_workers)
 		art_reference_loader = torch.utils.data.DataLoader(art_reference_set, batch_size=self.batch_size, shuffle=False, drop_last=True, num_workers=self.num_workers)
@@ -673,13 +673,12 @@ class Baseline(object):
 	def content_fidelity(self, args):
 		import torchvision.transforms.functional as trans_F
 
-
-		self.network.decoder.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'dec_model_'+str(args.test_iter)+'.pth'))['state_dict'])
-		self.network.transformer.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'transformer_model_'+str(args.test_iter)+'.pth'))['state_dict'])
+		self.network.decoder.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'dec_model_.pth'))['state_dict'])
+		self.network.transformer.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'transformer_model_.pth'))['state_dict'])
 		content_set = Transfer_TestDataset(self.content_dir, (self.imsize, self.imsize), self.cropsize, self.cencrop, type='art', is_test=False)
 		art_reference_set = Transfer_TestDataset(self.style_dir, (self.imsize, self.imsize), self.cropsize, self.cencrop, type='art', is_test=False)
 		
-		dir_path = os.path.join(args.test_result_dir, self.comment, 'stylized_results'+str(args.test_iter)+'_newnewnew')
+		dir_path = os.path.join(args.test_result_dir, self.comment, 'stylized_results')
 		os.makedirs(dir_path, exist_ok=True)
 		content_loader = torch.utils.data.DataLoader(content_set, batch_size=self.batch_size, shuffle=False, drop_last=True, num_workers=self.num_workers)
 		art_reference_loader = torch.utils.data.DataLoader(art_reference_set, batch_size=self.batch_size, shuffle=False, drop_last=True, num_workers=self.num_workers)
@@ -745,14 +744,14 @@ class Baseline(object):
 			torch.cuda.empty_cache()
 
 		total_CE = total_CE / N
-		print("iteration  : " , str(args.test_iter))
+		print("iteration  : " )
 		print("Content metric : ", total_CE)
 		print("Style metric : " , (total_style_loss / len(temp_list)))
 
 
 	def eval(self, args):
-		self.network.decoder.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'dec_model_'+str(args.test_iter)+'.pth'))['state_dict'])
-		self.network.transformer.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'transformer_model_'+str(args.test_iter)+'.pth'))['state_dict'])
+		self.network.decoder.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'dec_model_.pth'))['state_dict'])
+		self.network.transformer.load_state_dict(torch.load(os.path.join(self.result_st_dir, 'transformer_model_.pth'))['state_dict'])
 		content_set = Transfer_TestDataset(self.content_dir, (self.imsize, self.imsize), self.cropsize, self.cencrop, type='art', is_test=True)
 		art_reference_set = Transfer_TestDataset(self.style_dir, (self.imsize, self.imsize), self.cropsize, self.cencrop, type='art', is_test=True)
 		content_loader = torch.utils.data.DataLoader(content_set, batch_size=self.batch_size, shuffle=False, drop_last=True, num_workers=self.num_workers)
@@ -809,8 +808,8 @@ class Baseline(object):
 				torch.cuda.empty_cache()
 
 		print(" ")
-		print(str(args.test_iter) + " GRAM Loss : " ,  np.mean(gram_loss), "  ", np.std(gram_loss))
-		print(str(args.test_iter) + " stylized value : " ,  np.mean(stylized_value), "  ", np.std(stylized_value))
-		print(str(args.test_iter) + " mse stylized value : " ,  np.mean(mse_stylized_value), "  ", np.std(mse_stylized_value))
+		print(" GRAM Loss : " ,  np.mean(gram_loss), "  ", np.std(gram_loss))
+		print(" stylized value : " ,  np.mean(stylized_value), "  ", np.std(stylized_value))
+		print(" mse stylized value : " ,  np.mean(mse_stylized_value), "  ", np.std(mse_stylized_value))
 
 	

@@ -11,7 +11,6 @@ import scipy.misc
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import skvideo.io
 from PIL import Image
 import natsort
 Image.MAX_IMAGE_PIXELS = 1000000000
@@ -235,46 +234,6 @@ class Analysis_TestDataset(torch.utils.data.Dataset):
 			image = Image.open(self.file_names[index-1]).convert("RGB")
 		return self.transform(image), self.file_names[index]
 
-class Transfer_Video_TestDataset(torch.utils.data.Dataset):
-	def __init__(self, root_path, imsize=None, cropsize=None, cencrop=False, T=16):
-		super(Transfer_Video_TestDataset, self).__init__()
-
-		#self.file_names = sorted(os.listdir(root_path))
-		self.T = T
-		self.root_path = root_path
-		self.transform = _transformer(imsize, cropsize, cencrop)
-		self.file_names = (sorted([os.path.join(dirpath, f) for dirpath, dirnames, files in os.walk(self.root_path) for f in files if f.endswith('mp4') or f.endswith('avi')]))
-
-
-	def __len__(self):
-		return len(self.file_names)
-
-	def trim(self, video):
-		if video.shape[1] > self.T:
-			start = np.random.randint(0, video.shape[1] - (self.T*1) + 1)
-			end = start + self.T
-			return video[:, start:end, :, :]
-		else:
-			index = ((video.shape[1] / self.T)*np.arange(self.T)).astype(np.int32)
-			return video[:, index, :, :]
-
-	def video_transform(self, video):
-		vid = []
-		for frame_idx in range(video.shape[0]):
-			frame = self.transform(Image.fromarray(video[frame_idx,:,:,:], 'RGB'))
-			vid.append(frame)
-		vid = torch.stack(vid).permute(1,0,2,3)
-		return vid
-
-	def __getitem__(self, index):
-		video_path = self.file_names[index]
-		try:
-			video = skvideo.io.vread(video_path)
-			video = self.video_transform(video)
-			video = self.trim(video)
-		except:
-			print(self.file_names[index])
-		return video
 
 def lastest_arverage_value(values, length=100):
 	if len(values) < length:

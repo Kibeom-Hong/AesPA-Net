@@ -1,4 +1,4 @@
-CUDA_VISIBLE_DEVICES=1 python main.py \
+python main.py \
     --imsize 256 \
     --cropsize 256 \
     --type train \
