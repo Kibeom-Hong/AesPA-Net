@@ -30,9 +30,10 @@
 ## Usage
 #### Set pretrained weights
 * Pretrained models for encoder(VGG-19) can be found in the `./baseline_checkpoints`
-  -  Domainnes Indicator can be downloaded at [vgg_normalised_conv5_1.t7](https://drive.google.com/drive/folders/1HsJNskEMC5HUimq6ixkSZk7W_hgFNp7J?usp=sharing)
+  -  Pretrained VGG can be downloaded at [vgg_normalised_conv5_1.t7](https://drive.google.com/drive/folders/1HsJNskEMC5HUimq6ixkSZk7W_hgFNp7J?usp=sharing)
 - Prepare pretrained models for **AesPA-Net**
-  -  Domainnes Indicator can be downloaded at [Decoder.pth and Transformer.pth](https://drive.google.com/file/d/1-rf2CdrCr9ei9KS-V0H3kjo1oaPmT5Xz/view?usp=sharing)
+  -  Decoder can be downloaded at [dec_model.pth](https://drive.google.com/file/d/1nb7dQwj7RcQpi8_cURvErSwA-BxyZTT5/view?usp=sharing)
+  -  Transformer can be downloaded at [transformer_model.pth](https://drive.google.com/file/d/1YII45EfR3mVbyvqQlzvfiYFIoTCgGG_R/view?usp=sharing)
 
 - Move these pretrained weights to each folders:
   - transformer.pth -> `./train_results/<comment>/log/transformer_model.pth`
