@@ -9,7 +9,7 @@
 
 > ## AesPA-Net: Aesthetic Pattern-Aware Style Transfer Networks
 >
->  Paper[CVF] : TBD
+>  Paper[CVF] : [Link](https://openaccess.thecvf.com/content/ICCV2023/papers/Hong_AesPA-Net_Aesthetic_Pattern-Aware_Style_Transfer_Networks_ICCV_2023_paper.pdf)
 >  
 >  Paper[Arxiv] : [Link](https://arxiv.org/abs/2307.09724)
 > 
@@ -60,6 +60,17 @@ Available soon
 
 ## Citation
 If you find this work useful for your research, please cite:
+```
+@InProceedings{Hong_2023_ICCV,
+    author    = {Hong, Kibeom and Jeon, Seogkyu and Lee, Junsoo and Ahn, Namhyuk and Kim, Kunhee and Lee, Pilhyeon and Kim, Daesik and Uh, Youngjung and Byun, Hyeran},
+    title     = {AesPA-Net: Aesthetic Pattern-Aware Style Transfer Networks},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {22758-22767}
+}
+```
+
 ```
 @article{Hong2023AesPANetAP,
   title={AesPA-Net: Aesthetic Pattern-Aware Style Transfer Networks},
